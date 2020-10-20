@@ -15,7 +15,7 @@ sudo pacman -S --needed base-devel --noconfirm
 sudo pacman -S \
   xf86-video-amdgpu xorg-server xorg-xinit xorg-xfontsel xorg-xrandr \
   alacritty git openssh numlockx screen nethogs zip unzip wget curl tree \
-  i3 i3status dmenu feh \
+  i3 i3status dmenu feh picom \
   atom firefox borg rclone docker docker-compose \
   pulseaudio pavucontrol vlc deepin-screenshot gpicview \
   --noconfirm
