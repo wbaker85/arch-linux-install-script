@@ -16,7 +16,7 @@ sudo pacman -S \
   xf86-video-amdgpu xorg-server xorg-xinit xorg-xfontsel xorg-xrandr \
   alacritty git openssh numlockx screen nethogs zip unzip wget curl tree \
   i3 i3status dmenu feh picom \
-  code firefox borg rclone docker docker-compose \
+  code firefox borg rclone docker docker-compose python-llfuse \
   pulseaudio pavucontrol vlc deepin-screenshot gpicview \
   --noconfirm
 
