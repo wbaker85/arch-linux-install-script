@@ -14,7 +14,7 @@ pacman -S reflector --noconfirm
 reflector --sort rate -c 'United States' -f 10 --save /etc/pacman.d/mirrorlist
 
 # Install the system
-pacstrap /mnt base linux linux-firmware nano sudo man-db man-pages texinfo wpa_supplicant
+pacstrap /mnt base linux linux-firmware nano sudo man-db man-pages texinfo iwd
 
 # Swap file
 arch-chroot /mnt dd if=/dev/zero of=/swapfile bs=1M count=4096 status=progress
@@ -30,13 +30,13 @@ ln -sf /mnt/usr/share/zoneinfo/America/Detroit /mnt/etc/localtime
 sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /mnt/etc/locale.gen
 echo "LANG=en_US.UTF-8" >> /mnt/etc/locale.conf
 echo $HOSTNAME >> /mnt/etc/hostname
-echo -e "127.0.0.1 localhost\n::1 localhost\n192.168.1.200 $HOSTNAME.localdomain $HOSTNAME" >> /mnt/etc/hosts
+echo -e "127.0.0.1 localhost\n::1 localhost\n127.0.1.1 $HOSTNAME.localdomain $HOSTNAME" >> /mnt/etc/hosts
 sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /mnt/etc/sudoers
 
 # Copy network configs
-cp network_files/25-wireless.network /mnt/etc/systemd/network/25-wireless.network
-cp network_files/wpa_supplicant-wlp6s0.conf /mnt/etc/wpa_supplicant/wpa_supplicant-wlp6s0.conf
-echo "nameserver 1.1.1.1" >> /mnt/etc/resolv.conf
+# cp network_files/25-wireless.network /mnt/etc/systemd/network/25-wireless.network
+# cp network_files/wpa_supplicant-wlp6s0.conf /mnt/etc/wpa_supplicant/wpa_supplicant-wlp6s0.conf
+# echo "nameserver 1.1.1.1" >> /mnt/etc/resolv.conf
 
 # Set Time zone and configure locales
 arch-chroot /mnt hwclock --systohc
@@ -65,8 +65,8 @@ echo
 arch-chroot /mnt passwd $USERNAME
 
 # Enable some services
-arch-chroot /mnt systemctl enable systemd-networkd.service
-arch-chroot /mnt systemctl enable wpa_supplicant@wlp6s0.service
+# arch-chroot /mnt systemctl enable systemd-networkd.service
+# arch-chroot /mnt systemctl enable wpa_supplicant@wlp6s0.service
 arch-chroot /mnt systemctl enable fstrim.timer
 
 echo
